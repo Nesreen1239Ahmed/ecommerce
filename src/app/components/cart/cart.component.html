@@ -1,0 +1,38 @@
+<section class="w-75 mx-auto bg-main-light p-3 rounded-3 my-4">
+    <h1>Shop Cart</h1>
+    <p class="text-main">Total Price :{{cartDetails.totalCartPrice | currency:" EGP "}}</p>
+    <div class="row border-bottom pb-2 my-3" *ngFor="let item of cartDetails.products">
+        <!-- images -->
+        <div class="col-md-1">
+            <img class="w-100" [src]="item.product.imageCover">
+
+        </div>
+        <!-- details -->
+        <div class="col-md-11">
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- details -->
+                <div>
+                    <h3 class="h5">{{item.product.title | termtext:7 }}</h3>
+                   <p class="text-main m-0">Price: {{item.price}}</p>
+                   <button (click)="removeCartItem(item.product._id)" class="btn p-0 m-0"><i class="fa-regular fa-trash-can text-main"></i> Remove</button>
+
+
+                </div>
+                <!-- count -->
+                <div>
+                    <button (click)="changeCount(item.product._id , item.count + 1 )" class="btn border border-success mx-2">+</button>
+                    <span>{{item.count}}</span>
+                    <button (click)="changeCount(item.product._id , item.count - 1 )"  class="btn border border-success mx-2" >-</button>
+                 
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <button [routerLink]="['/checkout', cartDetails._id]" class="btn-main">onlinePayment <img src="../../../assets/images/visa-1.svg" alt=""></button>
+<!-- stripe  -->
+    <!--https://checkout.stripe.com/c/pay/cs_test_a14WeQf1FwhcwtpnSyaafmPrvN3ziroze0HysXQ01nUDzBeVkgQOX2SKxQ#fidkdWxOYHwnPyd1blpxYHZxWjA0SHViYl1ANVYyU2pOX2hVVW9ASmZBUElpa2FLVnBUQGo2UFduUEhIXHx9aEhjanBGZ1NxZ3RKNVVtXWxcSTJ8Qzx2aWZkUEBpMXJCXVRHTkIxZzBSZmhENTUxYHVKMUpQVycpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl  -->
+</section>
